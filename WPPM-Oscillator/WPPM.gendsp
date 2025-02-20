@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ -62.0, 133.0, 1010.0, 649.0 ],
+		"rect" : [ 34.0, 133.0, 1010.0, 649.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -204,7 +204,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "/* ===========================/*\r\n\timplementation of WPPM\r\n/* ===========================*/\r\n\r\n//smoother\r\nsmooth(x, time) {\r\n\tHistory prev;\r\n\tprev = prev + time * (x - prev);\r\n\t\r\n\treturn prev;\r\n}\r\n\r\nw(t, n, x) {\r\n\tif(t==0){//sin window\r\n\t\treturn sin(PI*x);\r\n\t}\r\n\tif(t==1) {//ramp window\r\n\t\treturn 1-x;\r\n\t}\r\n\tif(t==2) {//square window\r\n\t\treturn 1;\r\n\t}\r\n\tif(t==3) {//Gauss Window\r\n\t\treturn exp(-1*pow((x-0.5)/((n*0.2)+0.05),2));\r\n\t}\r\n\tif(t==4) {//Tukey Window\r\n\t\tif(x > 0.5){\r\n\t\t\tx = 1-x;\r\n\t\t}\r\n\t\tif(x < n/2) {\r\n\t\t\treturn 0.5*(1-cos((TWOPI*x) / n));\r\n\t\t\t\r\n\t\t}else {\r\n\t\t\treturn 1;\r\n\t\t}\r\n\t}\r\n}\r\n\r\n//Windowed Phase Modulation wave\r\ng(x, I, R, P){\r\n\treturn I * w(0,0,x) * sin(TWOPI*R*x + P);\r\n}\r\n\r\n//Wave Pulse Phase Modulation Phase Signal\r\nWPPM(x, d, Ra, Rb, Ia, Ib, Pa, Pb, t, n){\r\n\tif(x < d)\r\n\t\treturn (x/(2*d)) + w(t,n,d/2) * g(x/d, Ia, Ra, Pa);\r\n\telse if (d <= x)\r\n\t\treturn 0.5 + (x-d)/(2*(1-d)) + w(t,n,1-(d/2)) * g((x-d)/(1-d), Ib, Rb, Pb);\r\n}\r\n\r\n\r\n//parameter inputs, using Ra and Rb instead of R_1 and R_2 ect\r\nHistory phase(0);\r\nincrement = mtof(in1) / samplerate;\t//frequency\r\n\r\nd = smooth(in2, 0.05);\t\t//Duration Ratio\r\n\r\nRa = smooth(in3, 0.05);\t\t//Mod Ratio 1\r\nRb = smooth(in4, 0.05);\t\t//Mod Ratio 2\r\n\r\nIa = smooth(in5, 0.05);\t\t//Index 1\r\nIb = smooth(in6, 0.05);\t\t//Index 2\r\n\r\nPa = smooth(in7, 0.05);\t\t//Phase 1\r\nPb = smooth(in8, 0.05);\t\t//Phase 2\r\n\r\nWs = smooth(in9, 0.05);\t\t//window shape\r\nWt = in10;\t\t\t\t\t//window type\r\n\r\n\r\n//output\r\nout1 = WPPM(phase, d, Ra, Rb, Ia, Ib, Pa, Pb, Wt, Ws);\r\n\r\n//reset phase\r\nphase += increment;\nwhile (phase > 1.0) phase -= 1.0;",
+					"code" : "/* ===========================/*\r\n\timplementation of WPPM\r\n/* ===========================*/\r\n\r\n//smoother\r\nsmooth(x, time) {\r\n\tHistory prev;\r\n\tprev = prev + time * (x - prev);\r\n\t\r\n\treturn prev;\r\n}\r\n\r\nw(t, n, x) {\r\n\tif(t==0){//sin window\r\n\t\treturn sin(PI*x);\r\n\t}\r\n\tif(t==1) {//ramp window\r\n\t\treturn 1-x;\r\n\t}\r\n\tif(t==2) {//square window\r\n\t\treturn 1;\r\n\t}\r\n\tif(t==3) {//Gauss Window\r\n\t\treturn exp(-1*pow((x-0.5)/((n*0.2)+0.05),2));\r\n\t}\r\n\tif(t==4) {//Tukey Window\r\n\t\tif(x > 0.5){\r\n\t\t\tx = 1-x;\r\n\t\t}\r\n\t\tif(x < n/2) {\r\n\t\t\treturn 0.5*(1-cos((TWOPI*x) / n));\r\n\t\t\t\r\n\t\t}else {\r\n\t\t\treturn 1;\r\n\t\t}\r\n\t}\r\n}\r\n\r\n//Windowed Phase Modulation wave\r\ng(x, I, R, P){\r\n\treturn I * w(0,0,x) * sin(TWOPI*(R*x + P));\r\n}\r\n\r\n//Wave Pulse Phase Modulation Phase Signal\r\nWPPM(x, d, Ra, Rb, Ia, Ib, Pa, Pb, t, n){\r\n\tif(x < d)\r\n\t\treturn (x/(2*d)) + w(t,n,d/2) * g(x/d, Ia, Ra, Pa);\r\n\telse if (d <= x)\r\n\t\treturn 0.5 + (x-d)/(2*(1-d)) + w(t,n,1-(d/2)) * g((x-d)/(1-d), Ib, Rb, Pb);\r\n}\r\n\r\n\r\n//parameter inputs, using Ra and Rb instead of R_1 and R_2 ect\r\nHistory phase(0);\r\nincrement = mtof(in1) / samplerate;\t//frequency\r\n\r\nd = smooth(in2, 0.05);\t\t//Duration Ratio\r\n\r\nRa = smooth(in3, 0.05);\t\t//Mod Ratio 1\r\nRb = smooth(in4, 0.05);\t\t//Mod Ratio 2\r\n\r\nIa = smooth(in5, 0.05);\t\t//Index 1\r\nIb = smooth(in6, 0.05);\t\t//Index 2\r\n\r\nPa = smooth(in7, 0.05);\t\t//Phase 1\r\nPb = smooth(in8, 0.05);\t\t//Phase 2\r\n\r\nWs = smooth(in9, 0.05);\t\t//window shape\r\nWt = in10;\t\t\t\t\t//window type\r\n\r\n\r\n//output\r\nout1 = WPPM(phase, d, Ra, Rb, Ia, Ib, Pa, Pb, Wt, Ws);\r\n\r\n//reset phase\r\nphase += increment;\nwhile (phase > 1.0) phase -= 1.0;",
 					"fontface" : 0,
 					"fontname" : "<Monospaced>",
 					"fontsize" : 12.0,
@@ -334,7 +334,7 @@
 
 			}
  ],
-		"originid" : "pat-15"
+		"originid" : "pat-36"
 	}
 
 }
