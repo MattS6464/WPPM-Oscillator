@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 41.0, 100.0, 688.0, 385.0 ],
+		"rect" : [ 148.0, 233.0, 688.0, 385.0 ],
 		"openinpresentation" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
@@ -28,7 +28,6 @@
 			}
 , 			{
 				"box" : 				{
-					"hidden" : 1,
 					"id" : "obj-70",
 					"linecount" : 2,
 					"maxclass" : "comment",
@@ -171,7 +170,7 @@
 					"presentation" : 1,
 					"presentation_linecount" : 3,
 					"presentation_rect" : [ 4.820387125015259, 293.812295824289322, 172.0, 40.0 ],
-					"text" : "Window control determines the type of window applied to the mod waves on eaach side"
+					"text" : "The Window menu determines the window type applied to each wave pulse."
 				}
 
 			}
@@ -227,7 +226,6 @@
 , 			{
 				"box" : 				{
 					"format" : 6,
-					"hidden" : 1,
 					"id" : "obj-62",
 					"maxclass" : "flonum",
 					"maximum" : 1.0,
@@ -421,8 +419,6 @@
 					"format" : 6,
 					"id" : "obj-20",
 					"maxclass" : "flonum",
-					"maximum" : 2.0,
-					"minimum" : -2.0,
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
@@ -455,8 +451,6 @@
 					"format" : 6,
 					"id" : "obj-24",
 					"maxclass" : "flonum",
-					"maximum" : 5.0,
-					"minimum" : 0.0,
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
@@ -472,8 +466,6 @@
 					"format" : 6,
 					"id" : "obj-18",
 					"maxclass" : "flonum",
-					"maximum" : 2.0,
-					"minimum" : -2.0,
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
@@ -506,8 +498,6 @@
 					"format" : 6,
 					"id" : "obj-14",
 					"maxclass" : "flonum",
-					"maximum" : 5.0,
-					"minimum" : 0.0,
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
@@ -1024,10 +1014,10 @@
 
 			}
  ],
-		"originid" : "pat-25",
+		"originid" : "pat-32",
 		"dependency_cache" : [ 			{
 				"name" : "WPPM.gendsp",
-				"bootpath" : "~/Downloads/WavePulsePhaseModulation-Oscillator-main/WPPM-Oscillator",
+				"bootpath" : "~/Documents/WPPM-Oscillator/WPPM-Oscillator",
 				"patcherrelativepath" : ".",
 				"type" : "gDSP",
 				"implicit" : 1
